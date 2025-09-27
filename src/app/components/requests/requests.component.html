@@ -1,1 +1,30 @@
-<p>requests works!</p>
+<div class="requests-container">
+  <h2>Requests Management</h2>
+
+  <p>{{ message }}</p>
+
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Service</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of requests">
+        <td>{{ request.id }}</td>
+        <td>{{ request.client?.name }}</td>
+        <td>{{ request.service?.name }}</td>
+        <td>{{ request.status }}</td>
+        <td>{{ request.date | date:'short' }}</td>
+        <td>
+          <button (click)="deleteRequest(request.id)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

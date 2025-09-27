@@ -1,1 +1,46 @@
-<p>produits works!</p>
+<div class="produits-container">
+  <h2>Products Management</h2>
+
+  <!-- ✅ Add / Update Form -->
+  <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+    <label>Name</label>
+    <input type="text" formControlName="name" />
+
+    <label>Description</label>
+    <input type="text" formControlName="description" />
+
+    <label>Quantity</label>
+    <input type="number" formControlName="quantity" />
+
+    <button type="submit">
+      {{ editing ? 'Update Product' : 'Add Product' }}
+    </button>
+    <button type="button" (click)="resetForm()" *ngIf="editing">Cancel</button>
+  </form>
+
+  <p>{{ message }}</p>
+
+  <!-- ✅ Product List -->
+  <h3>Product List</h3>
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produit of produits">
+        <td>{{ produit.name }}</td>
+        <td>{{ produit.description }}</td>
+        <td>{{ produit.quantity }}</td>
+        <td>
+          <button (click)="editProduit(produit)">✏️ Edit</button>
+          <button (click)="deleteProduit(produit.id)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

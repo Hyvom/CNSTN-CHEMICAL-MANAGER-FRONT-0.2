@@ -1,0 +1,47 @@
+<div class="admin-container">
+  <h2>Admin Management</h2>
+  <p>{{ message }}</p>
+
+  <!-- Add new admin -->
+  <form (ngSubmit)="addAdmin()">
+    <input type="text" placeholder="Username" [(ngModel)]="newAdmin.username" name="username" required>
+    <input type="email" placeholder="Email" [(ngModel)]="newAdmin.email" name="email" required>
+    <input type="password" placeholder="Password" [(ngModel)]="newAdmin.password" name="password" required>
+    <button type="submit">➕ Add Admin</button>
+  </form>
+
+  <hr>
+
+  <!-- Admins list -->
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let admin of admins">
+        <td>{{ admin.id }}</td>
+        <td *ngIf="editAdmin?.id !== admin.id">{{ admin.username }}</td>
+        <td *ngIf="editAdmin?.id !== admin.id">{{ admin.email }}</td>
+
+        <!-- Edit mode -->
+        <td *ngIf="editAdmin?.id === admin.id">
+          <input [(ngModel)]="editAdmin!.username" name="editUsername">
+        </td>
+        <td *ngIf="editAdmin?.id === admin.id">
+          <input [(ngModel)]="editAdmin!.email" name="editEmail">
+        </td>
+
+        <td>
+          <button *ngIf="editAdmin?.id !== admin.id" (click)="startEdit(admin)">✏️ Edit</button>
+          <button *ngIf="editAdmin?.id === admin.id" (click)="saveEdit()">💾 Save</button>
+          <button (click)="deleteAdmin(admin.id!)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

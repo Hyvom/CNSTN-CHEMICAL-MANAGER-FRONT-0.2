@@ -4,11 +4,11 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { appRoutes } from './app/app.routes';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(appRoutes),
+    provideRouter(routes),
     provideHttpClient(),
     importProvidersFrom(FormsModule, ReactiveFormsModule)
   ]

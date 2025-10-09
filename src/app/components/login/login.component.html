@@ -7,7 +7,9 @@
     <label>Password</label>
     <input type="password" formControlName="password" />
 
-    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button type="submit" [disabled]="loginForm.invalid || isLoading" [ngClass]="{ 'loading': isLoading }">
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
   </form>
 
   <p>{{ message }}</p>

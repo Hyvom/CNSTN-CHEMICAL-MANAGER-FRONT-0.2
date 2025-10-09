@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 export class LoginComponent {
   loginForm: FormGroup;
   message: string = '';
+  isLoading: boolean = false;
+
 
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.loginForm = this.fb.group({
@@ -24,6 +26,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
+      this.isLoading = true;
       this.userService.login(this.loginForm.value).subscribe({
         next: (res) => this.message = 'Login successful ✅',
         error: (err) => this.message = 'Login failed ❌: ' + err.error.message

@@ -13,6 +13,8 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent {
   registerForm: FormGroup;
   message: string = '';
+  isLoading: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.registerForm = this.fb.group({
@@ -24,10 +26,14 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
+      this.isLoading = true;
       this.userService.register(this.registerForm.value).subscribe({
         next: (res) => this.message = 'Registration successful ✅',
         error: (err) => this.message = 'Registration failed ❌: ' + err.error.message
       });
     }
+  }
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

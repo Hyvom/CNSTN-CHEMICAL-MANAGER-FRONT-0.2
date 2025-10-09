@@ -8,9 +8,16 @@
     <input type="email" formControlName="email" />
 
     <label>Password</label>
-    <input type="password" formControlName="password" />
+    <div class="password-toggle">
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+      <span class="toggle-icon" (click)="togglePasswordVisibility()">
+        {{ showPassword ? 'Hide' : 'Show' }}
+      </span>
+    </div>
 
-    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <button type="submit" [disabled]="registerForm.invalid || isLoading" [ngClass]="{ 'loading': isLoading }">
+      {{ isLoading ? 'Registering...' : 'Register' }}
+    </button>
   </form>
 
   <p>{{ message }}</p>

@@ -3,20 +3,81 @@ nav {
     background-color: #005566; /* Deep teal for nuclear/science theme */
     padding: 1rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between; /* Adjusted to accommodate logo */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
-    animation: fadeInDown 0.5s ease-out; /* Navbar entrance animation */
+    animation: fadeInDown 0.5s ease-out;
 }
 
+/* Logo container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+/* Atom logo styles */
+.atom-logo {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Nucleus */
+.atom-logo .nucleus {
+    width: 12px;
+    height: 12px;
+    background-color: #007bff; /* Blue for nucleus */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Glow effect */
+}
+
+/* Electron orbits */
+.atom-logo .orbit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #a8dadc; /* Light cyan for orbits */
+    border-radius: 50%;
+    animation: spin 4s linear infinite;
+}
+
+.atom-logo .orbit:nth-child(2) {
+    transform: rotate(60deg); /* Second orbit at an angle */
+    animation-duration: 3.5s; /* Slightly faster */
+}
+
+.atom-logo .orbit:nth-child(3) {
+    transform: rotate(120deg); /* Third orbit at an angle */
+    animation-duration: 3s; /* Faster still */
+}
+
+/* Electrons */
+.atom-logo .electron {
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Navigation links */
 nav a {
     color: white;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
-    font-family: 'Roboto', sans-serif; /* Clean, modern font */
+    font-family: 'Roboto', sans-serif;
     font-size: 1.1rem;
     transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
     border-radius: 4px;
@@ -25,12 +86,12 @@ nav a {
 
 nav a:hover {
     background-color: #003d4a; /* Darker teal on hover */
-    transform: translateY(-2px); /* Subtle lift effect */
-    color: #a8dadc; /* Light cyan for contrast */
+    transform: translateY(-2px);
+    color: #a8dadc;
 }
 
 nav a[routerLinkActive="active"] {
-    background-color: #007bff; /* Blue for active route */
+    background-color: #007bff;
     font-weight: bold;
 }
 
@@ -42,15 +103,19 @@ nav a[routerLinkActive="active"] {
         padding: 1rem;
     }
 
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+
     nav a {
         width: 100%;
         padding: 0.75rem;
         margin: 0.25rem 0;
-        display: none; /* Hidden by default on mobile */
+        display: none;
     }
 
     nav.active a {
-        display: block; /* Show links when menu is active */
+        display: block;
     }
 
     /* Hamburger icon */
@@ -74,7 +139,6 @@ nav a[routerLinkActive="active"] {
         transition: all 0.3s ease;
     }
 
-    /* Hamburger animation for open/close */
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -97,5 +161,14 @@ nav a[routerLinkActive="active"] {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
